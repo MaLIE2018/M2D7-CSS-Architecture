@@ -480,15 +480,26 @@
             })
 
             button0.addEventListener("click", () => {
+                const blogCol = document.querySelector(".blog-main")
                 removeLastBlogPost()
             })
+            alertMe()
 
         }
 
         // EX20) Write an alert with the name of the author every time the user hover with the mouse over an author name
 
-        const = (params) => {
+        const alertMe = () => {
+            const blogCol = document.querySelector(".blog-main")
+            const bloglist = blogCol.querySelectorAll(".blog-post-meta")
+            console.log('bloglist:', bloglist)
 
+            for (const blogPost of bloglist) {
+                blogPost.firstElementChild.addEventListener("mouseover", () => {
+                    alert(`${blogPost.firstElementChild.innerText}`)
+                })
+            }
+            //const authors = document.
         }
     </script>
 </body>
