@@ -447,8 +447,7 @@
 
         const newBlogPost = () => {
             const blogCol = document.querySelector(".blog-main")
-            const bloglist = blogCol.querySelectorAll(".blog-post")
-            document
+            const bloglist = blogCol.children
             const newBlogPost = document.createElement("div")
             newBlogPost.classList.add("blog-post")
 
@@ -458,21 +457,39 @@
 
             newBlogPost.appendChild(newBlogPostTitle)
 
-            blogCol.insertBefore(newBlogPost, bloglist[bloglist.length - 2])
+            blogCol.insertBefore(newBlogPost, bloglist[bloglist.length - 1])
 
         }
-        newBlogPost()
+
+        // EX19) Write a function and attach it to the "Older" button, to remove the last Blog Post
+        const removeLastBlogPost = () => {
+            const blogCol = document.querySelector(".blog-main")
+            const bloglist = blogCol.children
+            console.log('bloglist:', bloglist)
+
+            bloglist[bloglist.length - 2].remove()
+        }
+
 
         window.onload = () => {
-                const button = document.querySelector(".blog-pagination").children[1]
-                console.log('button:', button)
-                button.classList.toggle("disabled")
-                button.addEventListener("click", () => {
-                    newBlogPost()
-                })
-            }
-            // EX19) Write a function and attach it to the "Older" button, to remove the last Blog Post
-            // EX20) Write an alert with the name of the author every time the user hover with the mouse over an author name
+            const button = document.querySelector(".blog-pagination").children[1]
+            const button0 = document.querySelector(".blog-pagination").children[0]
+            button.classList.toggle("disabled")
+            button.addEventListener("click", () => {
+                newBlogPost()
+            })
+
+            button0.addEventListener("click", () => {
+                removeLastBlogPost()
+            })
+
+        }
+
+        // EX20) Write an alert with the name of the author every time the user hover with the mouse over an author name
+
+        const = (params) => {
+
+        }
     </script>
 </body>
 
