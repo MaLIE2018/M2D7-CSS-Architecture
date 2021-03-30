@@ -17,13 +17,15 @@
 <head>
     <style>
         /* EX1) Write a selector to target the title of the page */
-        /* a.blog-header-logo.text-dark {
+        
+        a.blog-header-logo.text-dark {
             color: blue !important;
-        } */
+        }
         /* EX2) Write a selector to target every children of the navbar */
-        /* header.blog-header:nth-child(n) div:nth-child(n) :nth-child(n) {
+        
+        header.blog-header:nth-child(n) div:nth-child(n) :nth-child(n) {
             color: blue !important;
-        } */
+        }
         /* EX3) Write a selector to target the "continue reading..." inside the jumbotron */
         
         div.jumbotron div.col-md-6 p:nth-of-type(2)>a {
@@ -36,7 +38,7 @@
         }
         /* EX5) Write a selector to target the "even" links in the navbar */
         
-        header.blog-header a:nth-child(2n) {
+        nav.d-flex.justify-content-between a:nth-child(2n) {
             color: blue !important;
         }
         /* EX6) Write a selector to target the last blog post */
@@ -51,9 +53,12 @@
         }
         /* EX8) Write a selector to target the second post author */
         
-        main.container div.row div.blog-main>div.blog-post>p.blog-post-meta a:nth-child(n) {
+        .blog-post:nth-of-type(2) a {
             color: red !important;
         }
+        /* main.container div.row div.blog-main>div.blog-post>p.blog-post-meta a:nth-child(n) {
+            color: red !important;
+        } */
         /* EX9) Write a selector to target the "back to top" link     #### EXTRA Try doing it without targeting the footer element directly */
         
         p:last-of-type>a {
@@ -387,18 +392,11 @@
     <script>
         // JS Exercises
         // EX11) Write a function to add a new link into the navbar
-        const addLinktoNavbar = () => {
-            const navbar = document.querySelector("header").firstElementChild.children[1]
-
-            navbar.innerHTML += `<a href="https://www.google.de">New Link</a>`
-        }
+        const addLinktoNavbar = () => document.querySelector("header").firstElementChild.children[1].innerHTML += `<a href="https://www.google.de">New Link</a>`
         addLinktoNavbar()
             // EX12) Write a function to change the color of the main title
 
-        const changeColorMainTitle = () => {
-            const maintitle = document.querySelector(".jumbotron").firstElementChild.children[0]
-            maintitle.style.color = "red"
-        }
+        const changeColorMainTitle = () => document.querySelector(".jumbotron").firstElementChild.children[0].style.color = "red"
         changeColorMainTitle()
             // EX13) Write a function to change the background of the jumbotron
 
@@ -424,12 +422,6 @@
             }
             // EX16) Write a function to remove the "Search" magnifying glass icon
 
-        // const removeGlass = () => {
-        //     const navbar = document.querySelector("header").firstElementChild.children[2]
-        //     navbar.firstElementChild.remove()
-
-        // }
-
         const removeGlass = () => document.querySelector("header").firstElementChild.children[2].firstElementChild.remove()
         removeGlass()
             // EX17) Write a function to trim just the first 50 characters in the first paragraph for each blog post
@@ -448,6 +440,7 @@
         const newBlogPost = () => {
             const blogCol = document.querySelector(".blog-main")
             const bloglist = blogCol.children
+
             const newBlogPost = document.createElement("div")
             newBlogPost.classList.add("blog-post")
 
@@ -470,6 +463,20 @@
             bloglist[bloglist.length - 2].remove()
         }
 
+        // EX20) Write an alert with the name of the author every time the user hover with the mouse over an author name
+
+        const alertMe = () => {
+            const blogCol = document.querySelector(".blog-main")
+            const bloglist = blogCol.querySelectorAll(".blog-post-meta")
+
+
+            for (const blogPost of bloglist) {
+                blogPost.firstElementChild.addEventListener("mouseover", () => {
+                    alert(`${blogPost.firstElementChild.innerText}`)
+                })
+            }
+        }
+
 
         window.onload = () => {
             const button = document.querySelector(".blog-pagination").children[1]
@@ -485,21 +492,6 @@
             })
             alertMe()
 
-        }
-
-        // EX20) Write an alert with the name of the author every time the user hover with the mouse over an author name
-
-        const alertMe = () => {
-            const blogCol = document.querySelector(".blog-main")
-            const bloglist = blogCol.querySelectorAll(".blog-post-meta")
-            console.log('bloglist:', bloglist)
-
-            for (const blogPost of bloglist) {
-                blogPost.firstElementChild.addEventListener("mouseover", () => {
-                    alert(`${blogPost.firstElementChild.innerText}`)
-                })
-            }
-            //const authors = document.
         }
     </script>
 </body>
